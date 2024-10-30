@@ -49,9 +49,10 @@ class FetchNYTArticles extends Command
                         'title' => $articleData['headline']['print_headline'],
                         'description' => $articleData['abstract'] ?? null,
                         'url' => $articleData['web_url'] ?? null,
-                        'urlToImage' => $articleData['urlToImage'] ?? null,
-                        'publishedAt' => $publishedAt,
+                        'url_to_image' => $articleData['urlToImage'] ?? null,
+                        'published_at' => $publishedAt,
                         'content' => $articleData['headline']['main'] ?? null,
+                        'category' => $articleData['section_name'] ?? 'none',
                     ]);
                 }
             }

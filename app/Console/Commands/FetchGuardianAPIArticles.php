@@ -51,9 +51,10 @@ class FetchGuardianAPIArticles extends Command
                         'title' => $articleData['webTitle'],
                         'description' => $articleData['description'] ?? $articleData['webTitle'],
                         'url' => $articleData['webUrl'] ?? null,
-                        'urlToImage' => $articleData['urlToImage'] ?? null,
-                        'publishedAt' => $publishedAt,
+                        'url_to_image' => $articleData['urlToImage'] ?? null,
+                        'published_at' => $publishedAt,
                         'content' => $articleData['content'] ?? null,
+                        'category' => $articleData['sectionName'] ?? 'none',
                     ]);
                 }
             }

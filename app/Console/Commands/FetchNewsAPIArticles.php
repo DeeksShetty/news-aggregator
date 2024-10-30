@@ -51,9 +51,10 @@ class FetchNewsAPIArticles extends Command
                         'title' => $articleData['title'],
                         'description' => $articleData['description'] ?? null,
                         'url' => $articleData['url'] ?? null,
-                        'urlToImage' => $articleData['urlToImage'] ?? null,
-                        'publishedAt' => $publishedAt,
+                        'url_to_image' => $articleData['urlToImage'] ?? null,
+                        'published_at' => $publishedAt,
                         'content' => $articleData['content'] ?? null,
+                        'category' => $articleData['sectionName'] ?? 'none',
                     ]);
                 }
             }

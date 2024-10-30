@@ -13,8 +13,9 @@ class Article extends Model
         'title',
         'description',
         'url',
-        'urlToImage',
-        'publishedAt',
+        'url_to_image',
+        'published_at',
         'content',
+        'category'
     ];
 }
