@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserPreference extends Model
 {
-    //
+    protected $fillable = [
+        'user_id',
+        'prefer_source',
+        'prefer_categories',
+        'prefer_author'
+    ];
 }
