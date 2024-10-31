@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/password/reset-request', [AuthController::class, 'sendPasswordResetLink']);
+Route::post('/password/reset-request', [AuthController::class, 'sendPasswordResetLink'])->middleware('throttle:2,1');
 Route::post('/password/reset', [AuthController::class, 'passwordReset'])->name('password.reset');
 
 Route::middleware('auth:sanctum')->group(function () {
