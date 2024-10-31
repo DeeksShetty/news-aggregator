@@ -131,6 +131,34 @@ class NewsAggregatorTest extends TestCase
             ]);
     }
 
+    //A test case to test user can remove saved his article preferences
+    public function test_user_can_delete_article_preferences()
+    {
+        $user = User::factory()->create();
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        // Assume preferences are already set
+        UserPreference::create([
+            'user_id' => $user->id,
+            'prefer_source' => 'BBC News',
+            'prefer_categories' => 'Society',
+            'prefer_author' => 'BBC News,The New York Times'
+        ]);
+
+        // Call the API endpoint
+        $response = $this->withHeader('Authorization', "Bearer $token")->deleteJson('/api/user/article/preference');
+
+        // Assert success response
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'user article preference removed successfully',
+            'data' => '',
+        ]);
+
+        // Assert that preferences are deleted
+        $this->assertDatabaseMissing('user_preferences', ['user_id' => $user->id]);
+    }
+
     //A test case to test user can get hist saved preference
     public function test_user_can_get_article_preferences()
     {

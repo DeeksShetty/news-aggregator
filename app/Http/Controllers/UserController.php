@@ -129,4 +129,51 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/user/article/preference",
+     *     summary="Remove user article preferences",
+     *     description="Deletes the article preferences of the authenticated user.",
+     *     tags={"User"},
+     *     security={{"sanctum": {}}},
+     * 
+     *     @OA\Response(
+     *         response=200,
+     *         description="User article preference removed successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="user article preference removed successfully"),
+     *             @OA\Property(property="data", type="string", example="")
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=500,
+     *         description="Failed to remove user article preference",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Failed to remove user article preference"),
+     *             @OA\Property(property="error", type="string", example="Error message describing the issue")
+     *         )
+     *     )
+     * )
+     */
+    public function removeArticlePreference(Request $request){
+        try{
+            $user = $request->user();
+            UserPreference::where('user_id', $user->id)->delete();
+            return response()->json([
+                'message' => 'user article preference removed successfully',
+                'data' => '',
+            ], 200);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Failed remove user article preference : '.$e->getMessage());
+    
+            // Return error response
+            return response()->json([
+                'message' => 'Failed to remove user article preference',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

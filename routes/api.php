@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'user'],function(){
         Route::post('/article/set-preference',[UserController::class,'setUserArticlePreference']);
         Route::get('/article/get-preference',[UserController::class,'getUserArticlePreference']);
+        Route::delete('/article/preference',[UserController::class,'removeArticlePreference']);
     });
 });
