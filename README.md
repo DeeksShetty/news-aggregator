@@ -25,6 +25,7 @@ This project is configured to run with Docker using Laravel Sail. Follow the ste
    Once the build is complete, start the containers with:
    ```bash
    ./vendor/bin/sail up
+   
    You can now view running containers and images in Docker Desktop.
 
 4. **Access the Application**  
